@@ -2,7 +2,7 @@ spring:
   datasource:
     username: beer_inventory_service
     password: password
-    url: jdbc:mysql://localhost:3306/beerinventoryervice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/beerinventoryservice?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
   jpa:
     hibernate:
       ddl-auto: update

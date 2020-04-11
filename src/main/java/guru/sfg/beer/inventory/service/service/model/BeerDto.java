@@ -14,5 +14,6 @@ import java.util.UUID;
 public class BeerDto {
 
     private UUID id;
+    private String upc;
     private Integer quantityOnHand;
 }

@@ -1,6 +1,7 @@
 package guru.sfg.beer.inventory.service.service;
 
 import guru.sfg.beer.inventory.service.config.JmsConfig;
+import guru.sfg.beer.inventory.service.domain.BeerInventory;
 import guru.sfg.beer.inventory.service.event.NewInventoryEvent;
 import guru.sfg.beer.inventory.service.repositories.BeerInventoryRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,10 +24,12 @@ public class InventoryListener {
         var beer = event.getBeerDto();
         log.info("Received new inventory event for beer [{}]", beer.getId());
 
-        repository.findAllByBeerId(beer.getId()).forEach(inventory -> {
-            inventory.setQuantityOnHand(beer.getQuantityOnHand());
-            repository.save(inventory);
-        });
+        repository.save(BeerInventory.builder()
+                .beerId(beer.getId())
+                .upc(beer.getUpc())
+                .quantityOnHand(beer.getQuantityOnHand())
+                .build());
+        
         log.info("Updated inventory for beer [{}]", beer.getId());
     }
 }
